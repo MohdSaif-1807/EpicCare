@@ -1,0 +1,12 @@
+import express from "express";
+import { PatientMedicalRecordSubToSubElementDelete, PatientMedicalRecordAttributeSubElementArrayUpdate, PatientMedicalRecordAttributeSubElementUpdate, PatientMedicalRecordSubElementDelete, PatientMedicalRecordSubElementUpdate, PatientMediccalHistoryRecord } from "../controllers/PatientMedicalRecord.js";
+import multer from "multer";
+const upload = multer();
+const PatientEditRoutes = express.Router();
+PatientEditRoutes.put("/edit/:id", PatientMedicalRecordSubElementUpdate);
+PatientEditRoutes.put("/sub_edit/:id", upload.array("diagnosis_reports_images"), PatientMedicalRecordAttributeSubElementUpdate);
+PatientEditRoutes.delete("/delete/:id", PatientMedicalRecordSubElementDelete);
+PatientEditRoutes.delete("/delete/sub_ele/:id", PatientMedicalRecordSubToSubElementDelete);
+PatientEditRoutes.get("/get/:id", PatientMediccalHistoryRecord);
+PatientEditRoutes.put("/sub_ele_edit/:id", PatientMedicalRecordAttributeSubElementArrayUpdate);
+export default PatientEditRoutes;
